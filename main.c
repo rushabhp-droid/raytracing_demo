@@ -5,6 +5,14 @@
 #define HEIGHT 800
 #define COLOR_WHITE 0xffffffff
 
+struct Circle
+{
+    double x_coord;
+    double y_coord;
+    double radius;
+}
+
+
 int main() {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window* window = SDL_CreateWindow("raytracing demo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, 0); // icreate window
