@@ -5,6 +5,9 @@
 #define WIDTH 900
 #define HEIGHT 800
 #define COLOR_WHITE 0xffffffff
+#define COLOR_BLACK 0x00000000
+
+
 
 struct Circle
 {
@@ -36,6 +39,7 @@ int main() {
     SDL_Window* window = SDL_CreateWindow("raytracing demo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, 0); // create window
     SDL_Surface* surface = SDL_GetWindowSurface(window); // surface creation
     struct Circle circle = {200, 200, 80};
+    SDL_Rect erase_rect = {0,0,WIDTH,HEIGHT};
 
     int sim_running = 1; //true
     SDL_Event event;
@@ -46,7 +50,13 @@ int main() {
                 {
                     sim_running = 0;
                 }
+            if (event.type == SDL_MOUSEMOTION && event.motion.state != 0)
+                {
+                    circle.x_c = event.motion.x;
+                    circle.y_c = event.motion.y;
+                }
         }
+        SDL_FillRect(surface, &erase_rect, COLOR_BLACK);
         cr_Circle(surface, circle, COLOR_WHITE); // create a circle on the window
         SDL_UpdateWindowSurface(window); // Update window to display circle
         SDL_Delay(10);
