@@ -39,6 +39,7 @@ int main() {
     SDL_Window* window = SDL_CreateWindow("raytracing demo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, 0); // create window
     SDL_Surface* surface = SDL_GetWindowSurface(window); // surface creation
     struct Circle circle = {200, 200, 80};
+    struct Circle shadow_circle = {500,400,140};
     SDL_Rect erase_rect = {0,0,WIDTH,HEIGHT};
 
     int sim_running = 1; //true
@@ -58,6 +59,7 @@ int main() {
         }
         SDL_FillRect(surface, &erase_rect, COLOR_BLACK);
         cr_Circle(surface, circle, COLOR_WHITE); // create a circle on the window
+        cr_Circle(surface, shadow_circle, COLOR_WHITE);
         SDL_UpdateWindowSurface(window); // Update window to display circle
         SDL_Delay(10);
     }
